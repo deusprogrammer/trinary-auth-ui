@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Redirect, Switch, Link} from 'react-router-dom'
 import CreateUser from './routes/CreateUser'
 import Login from './routes/Login'
 
@@ -14,6 +14,7 @@ function App() {
                 <Route path={`${process.env.PUBLIC_URL}/register`} exact component={CreateUser} />
                 <Route path={`${process.env.PUBLIC_URL}/login`} exact component={Login} />
                 <Route path={`${process.env.PUBLIC_URL}/success`} exact component={LoginSuccess} />
+	        <Redirect to="/login" />
             </Switch>
         </Router>
     </div>
