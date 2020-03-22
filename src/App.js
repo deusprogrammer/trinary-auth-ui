@@ -14,7 +14,7 @@ function App() {
                 <Route path={`${process.env.PUBLIC_URL}/register`} exact component={CreateUser} />
                 <Route path={`${process.env.PUBLIC_URL}/login`} exact component={Login} />
                 <Route path={`${process.env.PUBLIC_URL}/success`} exact component={LoginSuccess} />
-	        <Redirect to="/login" />
+	        <Redirect to={`${process.env.PUBLIC_URL}/login`} />
             </Switch>
         </Router>
     </div>

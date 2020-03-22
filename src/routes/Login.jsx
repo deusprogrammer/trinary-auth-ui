@@ -2,6 +2,8 @@ import React from 'react'
 import {Form, Text} from 'informed'
 import axios from 'axios'
 
+import {Link} from 'react-router-dom'
+
 import config from '../utils/config'
 
 export default class Login extends React.Component {
@@ -10,7 +12,7 @@ export default class Login extends React.Component {
             username: this.formApi.getState().values.username,
             password: this.formApi.getState().values.password
         }).then(response => {
-            window.localStorage.setItem("jwt", response.data.jwtToken)
+            window.localStorage.setItem("accessToken", response.data._id)
             this.props.history.push(`${process.env.PUBLIC_URL}/success`)
         })
     }
@@ -24,6 +26,8 @@ export default class Login extends React.Component {
                     <label>Password:</label><Text field="password" type="password" /><br />
                     <button onClick={() => {this.login()}}>Login</button>
                 </Form>
+
+		<Link to={`${process.env.PUBLIC_URL}/register`}>Register</Link>
             </div>
         )
     }

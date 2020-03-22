@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import {Form, Text} from 'informed'
 
+import {Link} from 'react-router-dom'
+
 import config from '../utils/config'
 
 export default class CreateUser extends React.Component {
@@ -29,6 +31,8 @@ export default class CreateUser extends React.Component {
                     <label>Validate:</label><Text field="passwordCheck" type="password" /><br />
                     <button onClick={() => {this.createUser()}}>Create</button>
                 </Form>
+
+		<Link to={`${process.env.PUBLIC_URL}/login`}>Login</Link>
             </div>
         )
     }
