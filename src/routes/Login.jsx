@@ -20,7 +20,7 @@ export default class Login extends React.Component {
             this.props.history.push(`${process.env.PUBLIC_URL}/success`)
         }).catch(error => {
             this.setState({error: "Login Failed"})
-        }
+        })
     }
 
     render() {
