@@ -7,6 +7,10 @@ import {Link} from 'react-router-dom'
 import config from '../utils/config'
 
 export default class Login extends React.Component {
+    state = {
+        error: null
+    }
+
     login = () => {
         axios.post(config.baseUrl + "/auth", {
             username: this.formApi.getState().values.username,
@@ -14,13 +18,16 @@ export default class Login extends React.Component {
         }).then(response => {
             window.localStorage.setItem("accessToken", response.data._id)
             this.props.history.push(`${process.env.PUBLIC_URL}/success`)
-        })
+        }).catch(error => {
+            this.setState({error: "Login Failed"})
+        }
     }
 
     render() {
         return (
             <div>
                 <h1>Login</h1>
+                <div>{this.state.error}</div>
                 <Form getApi={formApi => this.formApi = formApi}>
                     <label>Username</label><Text field="username" /><br />
                     <label>Password:</label><Text field="password" type="password" /><br />
