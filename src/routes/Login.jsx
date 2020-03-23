@@ -17,13 +17,15 @@ export default class Login extends React.Component {
             password: this.formApi.getState().values.password
         }).then(response => {
             window.localStorage.setItem("accessToken", response.data._id)
-            
-            if (!document.referrer) {
-                this.props.history.push(`${process.env.PUBLIC_URL}/success`)
-                return
-            }
+            let redirect = new URLSearchParams(this.props.location.search).get("redirect")
 
-            window.location = document.referrer
+            if (redirect) {
+                window.location = redirect
+            } else if (document.referrer) {
+                window.location = document.referrer
+            } else {
+                this.props.history.push(`${process.env.PUBLIC_URL}/success`)
+            }
         }).catch(error => {
             this.setState({error: "Login Failed"})
         })
