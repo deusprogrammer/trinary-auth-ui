@@ -41,8 +41,9 @@ export default class Login extends React.Component {
                     <label>Password:</label><Text field="password" type="password" /><br />
                     <button onClick={() => {this.login()}}>Login</button>
                 </Form>
+                <a href="https://deusprogrammer.com/api/auth-svc/auth/twitch"><button>Twitch Login</button></a>
 
-		<Link to={`${process.env.PUBLIC_URL}/register`}>Register</Link>
+		        <Link to={`${process.env.PUBLIC_URL}/register`}>Register</Link>
             </div>
         )
     }
