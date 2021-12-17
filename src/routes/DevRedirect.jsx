@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 
 export default () => {
     useEffect(() => {
-        let urlParams = new URLSearchParams(window.search);
+        let urlParams = new URLSearchParams(window.location.search);
         let redirect = urlParams.get("to");
         let sep = "?";
         if (redirect.includes("?")) {
