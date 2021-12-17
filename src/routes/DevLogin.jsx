@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Form, Text, useFormApi, useFormState} from 'informed';
 import axios from 'axios';
 
 import config from '../utils/config';
 
 export default () => {
+    const [redirect, setRedirect] = useState("");
+
+    useEffect(() => {
+        let urlParams = new URLSearchParams(window.location.search);
+        let redirect = urlParams.get("redirect");
+        setRedirect(redirect);
+    }, []);
+
     const login = (formState) => {
         axios.post(config.baseUrl + "/auth", {
             username: formState.values.username,
@@ -22,13 +30,15 @@ export default () => {
         window.location = 'https://deusprogrammer.com/api/auth-svc/auth/twitch';
     }
 
+
+
     return (
         <div>
             <Form>
                 {
                     ({ formState }) => (
                         <>
-                            <label>Redirect:</label><Text field="redirect" /><br />
+                            <label>Redirect:</label><Text field="redirect" initialValue={redirect} /><br />
                             <label>Username:</label><Text field="username" /><br />
                             <label>Password:</label><Text field="password" type="password" /><br />
                             <button onClick={() => {login(formState)}}>Login</button>
