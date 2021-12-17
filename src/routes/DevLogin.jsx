@@ -1,37 +1,41 @@
 import React from 'react';
-import {Form, Text} from 'informed';
+import {Form, Text, useFormApi, useFormState} from 'informed';
 import axios from 'axios';
 
 import config from '../utils/config';
 
 export default () => {
-    let formApi;
-
-    const login = () => {
+    const login = (formState) => {
         axios.post(config.baseUrl + "/auth", {
-            username: formApi.getState().values.username,
-            password: formApi.getState().values.password
+            username: formState.values.username,
+            password: formState.values.password
         }).then(response => {
             window.localStorage.setItem("accessToken", response.data._id);
-            window.location = `https://deusprogrammer.com/util/auth/dev/redirect?to=${formApi.values.redirect}`;
+            window.location = `https://deusprogrammer.com/util/auth/dev/redirect?to=${formState.values.redirect}`;
         }).catch(error => {
             this.setState({error: "Login Failed"});
         })
     }
 
-    const twitchLogin = () => {
-        localStorage.setItem("redirect", `https://deusprogrammer.com/util/auth/dev/redirect?to=${formApi.values.redirect}`);
+    const twitchLogin = (formState) => {
+        localStorage.setItem("redirect", `https://deusprogrammer.com/util/auth/dev/redirect?to=${formState.values.redirect}`);
         window.location = 'https://deusprogrammer.com/api/auth-svc/auth/twitch';
     }
 
     return (
         <div>
-            <Form getApi={f => formApi = f}>
-                <label>Redirect:</label><Text field="redirect" /><br />
-                <label>Username:</label><Text field="username" /><br />
-                <label>Password:</label><Text field="password" type="password" /><br />
-                <button onClick={() => {login()}}>Login</button>
-                <button onClick={() => {twitchLogin()}}>Twitch Login</button>
+            <Form>
+                {
+                    ({ formState }) => (
+                        <>
+                            <label>Redirect:</label><Text field="redirect" /><br />
+                            <label>Username:</label><Text field="username" /><br />
+                            <label>Password:</label><Text field="password" type="password" /><br />
+                            <button onClick={() => {login(formState)}}>Login</button>
+                            <button onClick={() => {twitchLogin(formState)}}>Twitch Login</button>
+                        </>
+                    )
+                }
             </Form>
         </div>
     );
