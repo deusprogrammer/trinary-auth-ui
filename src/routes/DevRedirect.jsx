@@ -10,4 +10,8 @@ export default () => {
         }
         window.location = redirect + `${sep}accessToken=${localStorage.getItem("accessToken")}`;
     }, []);
+
+    return (
+        <div>Redirecting to your chosen redirect url</div>
+    )
 }
