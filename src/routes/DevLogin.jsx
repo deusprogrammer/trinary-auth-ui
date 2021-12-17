@@ -18,7 +18,7 @@ export default () => {
     }
 
     const twitchLogin = (formState) => {
-        localStorage.setItem("redirect", `https://deusprogrammer.com/util/auth/dev/redirect?to=${formState.values.redirect}`);
+        localStorage.setItem("twitchRedirect", `https://deusprogrammer.com/util/auth/dev/redirect?to=${formState.values.redirect}`);
         window.location = 'https://deusprogrammer.com/api/auth-svc/auth/twitch';
     }
 
