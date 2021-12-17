@@ -1,5 +1,8 @@
 import React from 'react';
-import {Form, Text} from 'informed'
+import {Form, Text} from 'informed';
+import axios from 'axios';
+
+import config from '../utils/config';
 
 export default () => {
     let formApi;
