@@ -5,13 +5,8 @@ import axios from 'axios';
 import config from '../utils/config';
 
 export default () => {
-    const [redirect, setRedirect] = useState("");
-
-    useEffect(() => {
-        let urlParams = new URLSearchParams(window.location.search);
-        let redirect = urlParams.get("redirect");
-        setRedirect(redirect);
-    }, []);
+    let urlParams = new URLSearchParams(window.location.search);
+    let redirect = urlParams.get("redirect");
 
     const login = (formState) => {
         axios.post(config.baseUrl + "/auth", {
@@ -29,8 +24,6 @@ export default () => {
         localStorage.setItem("twitchRedirect", `https://deusprogrammer.com/util/auth/dev/redirect?to=${formState.values.redirect}`);
         window.location = 'https://deusprogrammer.com/api/auth-svc/auth/twitch';
     }
-
-
 
     return (
         <div>
