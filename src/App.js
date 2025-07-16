@@ -7,6 +7,7 @@ import './App.css'
 import LoginSuccess from './routes/LoginSuccess'
 import DevLogin from './routes/DevLogin'
 import DevRedirect from './routes/DevRedirect'
+import LoginNoTwitch from './routes/LoginNoTwitch'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Switch>
                 <Route path={`${process.env.PUBLIC_URL}/register`} exact component={CreateUser} />
                 <Route path={`${process.env.PUBLIC_URL}/login`} exact component={Login} />
+                <Route path={`${process.env.PUBLIC_URL}/login/standard`} exact component={LoginNoTwitch} />
                 <Route path={`${process.env.PUBLIC_URL}/success`} exact component={LoginSuccess} />
 
                 <Route path={`${process.env.PUBLIC_URL}/dev`} exact component={DevLogin} />
